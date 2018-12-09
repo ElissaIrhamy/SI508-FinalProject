@@ -39,7 +39,10 @@ def confirm_movie():
         m1_list = movie_dict(mov_one)
         #print(type(m1_list))
         #for each in m1_list:
-        return "Here are the movies I found. Which one did you mean? {}".format(m1_list)
+        m1_display = """
+<h2>Here are the movies I found. Which one did you mean?<br></h2>
+        """
+        return m1_display
 #"Here are the movies I found for the movies you inputted. Which one did you mean?\n {}".format(m1_list)
 # @app.route('/user/<yourname>')
 # def hello_name(yourname):
