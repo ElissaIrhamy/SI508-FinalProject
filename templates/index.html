@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <ul class=flashes>
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endwith %}
+<style>
+body {
+  background-color: #F4F6F7;
+}
+</style>
+<br><br><br><br><br>
+<h1 style='color:#5D6D7E'><center><font face="helvetica">Welcome to Movie Recs!</h1></center>
+<h3><center>Please input two movies that you like below</center></h3>
+<form action = 'http://localhost:5000/movieuser' method='GET'>
+<center>Movie 1<br>
+<input type="text" name="mov1" value=""><br>
+Movie 2<br>
+<input type="text" name="mov2" value=""><br>
+<input type="submit" value="Submit"></font></center>
+</form>
+</html>
