@@ -4,6 +4,7 @@ ELISSA ALANNA BINTI IRHAMY
 Steps to run this program:
 
 STEP 1 - Keys
+
 Keys needed to be obtained:
 1. The Movie Database API
 2. Taste Dive API
