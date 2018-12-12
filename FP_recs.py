@@ -10,10 +10,14 @@ from FP_codes import *
 ## REQUEST FROM TASTEDIVE API ##
 def tastedive_rec(movie):
     taste_base = "https://tastedive.com/api/similar"
-    taste_param = {"q": "movie:" + movie, "type": "movies", "k": taste_dive_key}
+    taste_param = {"q": "movie:" + movie.lower(), "type": "movies", "k": taste_dive_key}
     response = check_cache(taste_base, taste_param)
     json_response = json.loads(response)
+    #print(json_response)
     mov_rec_dict = json_response["Similar"]["Results"]
+    if mov_rec_dict == []:
+        return None
+    #print(mov_rec_dict)
     mov_names = []
     for each in mov_rec_dict:
         each_name = each.get("Name", "None")
@@ -21,7 +25,7 @@ def tastedive_rec(movie):
     #print(mov_names)
     return mov_names
 
-#print(len(tastedive_rec("spiderman,inception")))
+print(tastedive_rec("jnfjberfb,fdjhbvj"))
 
 ## CHECK EACH MOVIE FROM TASTEDIVE WITH GENRE ID FROM TMDB, PUT IN DICTIONARY ##
 def recs_steps(movie, ori_movie_obj1, ori_movie_obj2):
@@ -35,6 +39,12 @@ def recs_steps(movie, ori_movie_obj1, ori_movie_obj2):
     #print("second movie genre: ", ori_genre2)
     ori_genre = ori_genre1 + list(set(ori_genre2) - set(ori_genre1))
     #print("combined list: ", ori_genre)
+    if genre == []:
+        return None
+    elif ori_genre1 == []:
+        return None
+    elif ori_genre2 == []:
+        return None 
     count = 0
     same_genre_id = []
     for each in genre:
@@ -68,11 +78,11 @@ def sort_genre_count(dict):
         count += 1
 
     #print top 10 movie name with their plots
-    for each in top_ten_list:
-        mov_info = movie_dict(each[0])
-        print(mov_info[0])
-        print("--------------------------")
-    return
+    # for each in top_ten_list:
+    #     mov_info = movie_dict(each[0])
+    #     print(mov_info[0])
+    #     print("--------------------------")
+    return top_ten_list
 ## TEST ##
 # test_ori_movie_dict1 = movie_dict("inception")
 # test_ori_movie_dict2 = movie_dict("the amazing spiderman")
