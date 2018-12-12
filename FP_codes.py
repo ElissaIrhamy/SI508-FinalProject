@@ -34,8 +34,8 @@ def request_movie(diction):
     json_response = json.loads(response)
     return json_response
 
-#test_movie_diction = {"api_key": tmdb_key, "query": "parent trap"}
-#print(request_movie(test_movie_diction))
+# test_movie_diction = {"api_key": tmdb_key, "query": "sdkvbuwvbs"}
+# print(request_movie(test_movie_diction))
 
 ## REQUEST  GENRE ID NAMES ##
 def request_genreID():
@@ -73,7 +73,7 @@ class Movie():
         self.genre = movie_info.get("genre_ids", "None")
 
     def __str__(self):
-        info = "{}\n{}\n{}".format(self.title, self.release, self.plot)
+        info = "<b>{}</b><br>{}<br><i>{}</i>".format(self.title, self.release, self.plot)
         return info
 
     def __repr__(self):
@@ -93,69 +93,24 @@ class Movie():
 
 def movie_dict(movie):
     """This is a movie dictionary function"""
-    movie_diction = {"api_key": tmdb_key, "query": movie}
+    movie_diction = {"api_key": tmdb_key, "query": movie.lower()}
     movie_response = request_movie(movie_diction)
     #print(movie_response)
+
     results_list = movie_response["results"]
-    user_movie_dict = {}
-    movie_objects = []
-    for per_movie in results_list:
-        # print("---------------")
-        # print(per_movie)
-        class_movie = Movie(per_movie)
-        movie_objects.append(class_movie)
+    if results_list != []:
+        user_movie_dict = {}
+        movie_objects = []
+        for per_movie in results_list:
+            # print("---------------")
+            # print(per_movie)
+            class_movie = Movie(per_movie)
+            movie_objects.append(class_movie)
+    else:
+        movie_objects = None
     return movie_objects
 
-#print(movie_dict("parent trap"))
-
-# change str title chosen to a string for Rotten Tomatoes
-# def cleaned_title(user_movie_str):
-#     title_clean = []
-#     str_title = user_movie_str.title
-#     for each in str_title:
-#         if not each.isalnum():
-#             if each == " " or each == "-":
-#                 title_ch = each.replace(each,"_")
-#                 title_clean.append(title_ch)
-#         else:
-#             title_ch = each.lower()
-#             title_clean.append(title_ch)
-#     clean_title = "".join(title_clean)
-#     return clean_title
-#
-# # scrape Rotten Tomatoes browse all page
-# def dvd_stream_browse_all(movie):
-#     rotten_site = "https://www.rottentomatoes.com/browse/dvd-streaming-all"
-#     response = requests.get(rotten_site).text
-#     soup = BeautifulSoup(response, 'html.parser')
-#     movie_link = soup.find_all(mps = "mps")
-#     return movie_link
-#
-# #print(dvd_stream_browse_all("a"))
-# # scrape Rotten Tomatoes for ratings
-# def dvd_stream_movie(movie):
-#     rotten_site = "https://www.rottentomatoes.com/m/" + movie
-#     response = check_cache(rotten_site)
-#     #req_resp = requests.get(rotten_site).text
-#     soup = BeautifulSoup(response, 'html.parser')
-#     ratings = soup.find_all(class_ = "meter-value")
-#     if ratings == []:
-#         return movie + " is not found in Rotten Tomatoes."
-#     tomatoer = ratings[0].text.replace("\n","")
-#     audience = ratings[1].text.replace("\n", "")
-#     return tomatoer, audience
-
-#print(dvd_stream_movie("the_cinderella_story"))
-
-# get genre for movie chosen
-# genre is in the Movie class
-# def list_of_genre(movie_obj):
-#     list_genre_id = movie_obj.genre
-#     genre_id_name = []
-#     for each_id in list_genre_id:
-#         genre_n = genre_name(each_id)
-#         genre_id_name.append(genre_n)
-#     return genre_id_name
+#print(type(movie_dict("moana")))
 
 
 ## TEST ##
