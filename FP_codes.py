@@ -37,6 +37,7 @@ def request_movie(diction):
 # test_movie_diction = {"api_key": tmdb_key, "query": "sdkvbuwvbs"}
 # print(request_movie(test_movie_diction))
 
+
 ## REQUEST  GENRE ID NAMES ##
 def request_genreID():
     base = "https://api.themoviedb.org/3/genre/movie/list"
@@ -63,7 +64,14 @@ def genre_name(num_id):
     return movie_genre
 
 #print(genre_name(28))
-
+# get movie dictionary from request. Info needed:
+# movie ID (key)
+# movie title
+# movie release date
+# movie plot
+# movie rating
+# movie genre
+# movie tag
 class Movie():
     def __init__(self, movie_info):
         self.id = movie_info.get("id", "None")
@@ -74,6 +82,7 @@ class Movie():
 
     def __str__(self):
         info = "<b>{}</b><br>{}<br><i>{}</i>".format(self.title, self.release, self.plot)
+        #info = "\n{}\n{}\n{}".format(self.title, self.release, self.plot)
         return info
 
     def __repr__(self):
@@ -81,15 +90,6 @@ class Movie():
         return rep
 
 #print(Movie(["Inception", "2017", "A man dreaming", "28"]))
-
-# get movie dictionary from request. Info needed:
-# movie ID (key)
-# movie title
-# movie release date
-# movie plot
-# movie rating
-# movie genre
-# movie tag
 
 def movie_dict(movie):
     """This is a movie dictionary function"""
@@ -110,7 +110,33 @@ def movie_dict(movie):
         movie_objects = None
     return movie_objects
 
-#print(type(movie_dict("moana")))
+## REQUEST MOVIE NUMBERS ##
+# need to use movie ID from class Movie
+def request_movie_num(movie_id):
+    base = "https://api.themoviedb.org/3/movie/" + str(movie_id)
+    num_diction = {"api_key": tmdb_key}
+    response = check_cache(base, num_diction)
+    json_response = json.loads(response)
+    return json_response
+
+#test_movie_num = movie_dict("the help")
+#test_num = request_movie_num(test_movie_num[0].id)
+# make an inheritence class from Movie to get the budget, revenue and runtime
+class MovieNumbers():
+    def __init__(self, numbers_info):
+        #super().__init__(self.id, self.title)
+        self.title = numbers_info.get("title", "None")
+        self.budget = numbers_info.get("budget", "None")
+        self.revenue = numbers_info.get("revenue", "None")
+        self.runtime = numbers_info.get("runtime", "None")
+
+    def __str__(self):
+        #numbers = "Title: {}\nBudget: {} Revenue: {} Runtime: {}".format(self.title,self.budget,self.revenue,self.runtime)
+        numbers = "Runtime: {}".format(self.runtime)
+        return numbers
+
+#movie_num_obj = MovieNumbers(test_num)
+
 
 
 ## TEST ##
