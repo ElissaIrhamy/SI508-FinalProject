@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from FP_secrets import *
 import requests
 from FP_codes import *
+import matplotlib.pyplot as plt
 
 ## REQUEST FROM TASTEDIVE API ##
 def tastedive_rec(movie):
@@ -85,22 +86,17 @@ def sort_genre_count(dict):
             top_ten_list.append(genre_sorted[count])
             count += 1
 
-    #print top 10 movie name with their plots
-    # for each in top_ten_list:
-    #     mov_info = movie_dict(each[0])
-    #     print(mov_info[0])
-    #     print("--------------------------")
     return top_ten_list
-## TEST ##
-# test_ori_movie_dict1 = movie_dict("inception")
-# test_ori_movie_dict2 = movie_dict("the amazing spiderman")
 
-# test_recs = tastedive_rec("inception, the amazing spiderman")
-# for test_each in test_recs:
-#     test_genre_list = recs_steps(test_each, test_ori_movie_dict1[0], test_ori_movie_dict2[0])
-#     dict_genre_count(test_genre_list)
-# #print(len(movie_genre_dict.keys()))
-# sort_genre_count(movie_genre_dict)
-#list1 = recs_steps("shutter island",test_ori_movie_dict1[0],test_ori_movie_dict2[0])
+# use class movie numbers to print out a pie chart/graph of budget, revenue use matplotlib
+def plot_numbers(budget, revenue):
+    labels = "Budget", "Revenue"
+    sizes = [budget, revenue]
+    explode = (0.1,0)
 
-#print(movie_genre_dict)
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    plt.show()
+    return 
