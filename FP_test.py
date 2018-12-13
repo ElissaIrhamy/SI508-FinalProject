@@ -79,7 +79,12 @@ class test_cache(unittest.TestCase):
 
 class test_genre_sort(unittest.TestCase):
     """ This will test the sorting of recommendations using number of genres """
-    
+    # test if the sorting is in descending order and it returns the correct title
+
+    def test_sort_order(self):
+        test_genre_dict = {"Movie Genre 3": [1, ["genre2"]], "Movie Genre 1": [3, ["genre4", "genre1", "genre2"]], "Movie Genre 2": [2, ["genre1", "genre2"]]}
+        test_sort = sort_genre_count(test_genre_dict)
+        self.assertEqual(test_sort, ["Movie Genre 1", "Movie Genre 2", "Movie Genre 3"])
 
 
 if __name__ == '__main__':
