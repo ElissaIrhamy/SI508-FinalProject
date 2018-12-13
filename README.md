@@ -27,6 +27,8 @@ STEP 3 - Program
 
 THE MECHANICS.
 
+(Images of how the application looks like is in the Screenshots folder)
+
 1. Two data sources are used for this project. The Movie Database API (for movie information including budget and revenue) and Taste Dive API (for recommendations).
 2. Further filter is used  by sorting the genre of the recommended movies with the genre of the two inputted movies. The more similar genre those three movies have together, the further up the recommended movie goes up the list. In the end, only the top 10 movies are chosen to be displayed.
 3. A class Movie is made to collect information about a particular movie, inputted or recommended. The Movie class has attributes such as title, plot, release date and these attributes are used in other functions.
@@ -52,4 +54,4 @@ Requirements checked:
 
 3. Third Level Requirements
 - Interactive user input
-- Generated a bar chart 
+- Generated a bar chart
