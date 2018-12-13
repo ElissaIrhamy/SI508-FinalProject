@@ -25,7 +25,7 @@ def tastedive_rec(movie):
     #print(mov_names)
     return mov_names
 
-print(tastedive_rec("jnfjberfb,fdjhbvj"))
+#print(tastedive_rec("jnfjberfb,fdjhbvj"))
 
 ## CHECK EACH MOVIE FROM TASTEDIVE WITH GENRE ID FROM TMDB, PUT IN DICTIONARY ##
 def recs_steps(movie, ori_movie_obj1, ori_movie_obj2):
@@ -44,7 +44,7 @@ def recs_steps(movie, ori_movie_obj1, ori_movie_obj2):
     elif ori_genre1 == []:
         return None
     elif ori_genre2 == []:
-        return None 
+        return None
     count = 0
     same_genre_id = []
     for each in genre:
@@ -71,11 +71,19 @@ def dict_genre_count(movie_genre_list):
 
 def sort_genre_count(dict):
     genre_sorted = sorted(dict.items(), key = lambda x:x[1], reverse = True)
+    #print(genre_sorted)
     top_ten_list = []
-    count = 0
-    while count < 10:
-        top_ten_list.append(genre_sorted[count])
-        count += 1
+    #print(len(genre_sorted))
+    if len(genre_sorted) < 10:
+        for each in genre_sorted:
+            top_ten_list.append(each[0])
+            #print(top_ten_list)
+    else:
+        count = 0
+        while count < 10:
+            #print(genre_sorted[count])
+            top_ten_list.append(genre_sorted[count])
+            count += 1
 
     #print top 10 movie name with their plots
     # for each in top_ten_list:
