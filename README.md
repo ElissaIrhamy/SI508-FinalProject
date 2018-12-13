@@ -54,4 +54,4 @@ Requirements checked:
 
 3. Third Level Requirements
 - Interactive user input
-- Generated a bar chart
+- Generated a pie chart
