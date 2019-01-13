@@ -14,7 +14,7 @@ STEP 2 - Flask
 
 Download all the files in the repository.
 Run python FP_Flask.py runserver in the terminal.
-All other files and libraries should already be imported.
+All other files and libraries should already be imported except for matplotlib.
 
 STEP 3 - Program
 
